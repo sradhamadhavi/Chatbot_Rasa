@@ -37,7 +37,7 @@ def verify():
 ##################################################################################################################################
 def getRestDetails(page_id):
     try:
-        response = requests.request("GET", Rest_url+str(page_id)[:1])
+        response = requests.request("GET", Rest_url+str(page_id)[:4])
         global magento_url
         magento_url=response.json()['magento_api_endpoint']
         global magento_user
@@ -63,7 +63,7 @@ def webhook():
     if data["object"] == "page":
         for entry in data["entry"]:
             page_id=entry["id"]
-            
+           
             getRestDetails(page_id)
             
             for messaging_event in entry["messaging"]:
